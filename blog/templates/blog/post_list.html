@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %} {% block content %} {% for post in posts %}
+<div class="post">
+    <div class="date">
+        {{ post.published_date }}
+    </div>
+    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+    <p>{{ post.text|linebreaksbr }}</p><span style="background-color:yellow">Watson Says:</span>
+    <p>{% if post.angerScore %}Anger : {{ post.angerScore }} {% endif %} | {% if post.disgustScore %} Disgust : {{ post.disgustScore }} |{% endif %} {% if post.fearScore %} Fear : {{ post.fearScore }} | {% endif %}{% if post.joyScore %}Joy : {{ post.joyScore }} |{%endif %}{% if post.sadScore %} Sad : {{ post.sadScore }}{% endif %}</p>
+
+    <p>{{ post.objtxt }} | word count: {{ post.objword }} | Character count:{{ post.objchar }} </p>
+
+</div>
+{% endfor %} {% endblock %}
